@@ -24,9 +24,9 @@ export const LeadProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    fetchAllSalesAgent();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllSalesAgent();
+  // }, []);
 
   return (
     <LeadContext.Provider
