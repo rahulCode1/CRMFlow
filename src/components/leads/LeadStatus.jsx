@@ -1,4 +1,4 @@
-import { useSearchParams, Link, useRouteLoaderData } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import useLeadContext from "../../context/LeadContext";
 import Leads from "./Leads";
 

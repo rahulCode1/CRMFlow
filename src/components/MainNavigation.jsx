@@ -93,7 +93,7 @@ const MainNavigation = () => {
     <>
       {/* ================= MOBILE TOP NAVBAR ================= */}
       <nav className="navbar navbar-dark bg-dark d-md-none px-3">
-        <span className="navbar-brand fw-semibold">Anvaya</span>
+        <span className="navbar-brand fw-semibold">CRMFlow</span>
 
         <button
           className="btn btn-outline-light"
@@ -124,7 +124,7 @@ const MainNavigation = () => {
         }}
       >
         <div className="p-3 border-bottom border-secondary">
-          <h5 className="text-white mb-0 fw-semibold">Anvaya</h5>
+          <h5 className="text-white mb-0 fw-semibold">CRMFlow</h5>
         </div>
 
         <nav className="flex-grow-1 p-3">

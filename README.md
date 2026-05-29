@@ -1,4 +1,4 @@
-# Leads Management
+# CRMFlow
 
 A full-stack leads management app where you can browse, search, add, edit & view details of leads.
 Built with React frontend, Express/Node backend, Mongodb database.
@@ -14,7 +14,7 @@ Built with React frontend, Express/Node backend, Mongodb database.
 ## Quick Start
 
 ```
-git clone  https://github.com/rahulCode1/MajorProject2-frontend.git
+git clone  https://github.com/rahulCode1/CRMFlow.git
 cd my-app
 npm install
 npm start
