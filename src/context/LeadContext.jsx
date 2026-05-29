@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext,  useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const LeadContext = createContext();
 
@@ -13,20 +13,23 @@ export const LeadProvider = ({ children }) => {
 
   const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
-  const fetchAllSalesAgent = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(`${apiUrl}/agents`);
-      const salesAgent = response.data?.allSalesAgents;
+  useEffect(() => {
+    const fetchAllSalesAgent = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`${apiUrl}/agents`);
+        const salesAgent = response.data?.allSalesAgents;
 
-      setSalesAgent(salesAgent || []);
-    } catch (error) {}
-    setIsLoading(false);
-  };
+        setSalesAgent(salesAgent || []);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  // useEffect(() => {
-  //   fetchAllSalesAgent();
-  // }, []);
+    fetchAllSalesAgent();
+  }, [apiUrl]);
 
   return (
     <LeadContext.Provider
