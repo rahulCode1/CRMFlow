@@ -7,7 +7,7 @@ Built with React frontend, Express/Node backend, Mongodb database.
 
 ## Demo Link
 
-[Live Demo](https://major-project2-frontend-rho.vercel.app/)
+[Live Demo](https://crm-flow-sable.vercel.app)
 
 ---
 
