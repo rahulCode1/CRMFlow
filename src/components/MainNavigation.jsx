@@ -6,8 +6,7 @@ const MainNavigation = () => {
   const [open, setOpen] = useState(false);
   const { handleLogout, isLogin } = useLeadContext();
   const location = useLocation();
-  const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
+ 
 
   // Auto close mobile menu on route change
   useEffect(() => {
