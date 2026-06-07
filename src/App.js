@@ -33,6 +33,7 @@ import SettingLeadsPage, {
 import SalesAgents from "./components/setting/SalesAgent";
 import LoginPage from "../src/pages/LoginPage";
 import VerifyLogin from "./pages/VerifyLogin";
+import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -57,17 +58,33 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <LeadManagementPage />,
+                element: (
+                  <ProtectedRoutes>
+                    <LeadManagementPage />
+                  </ProtectedRoutes>
+                ),
                 action: commentAction,
               },
               {
                 path: "edit",
-                element: <EditLeadPage />,
+                element: (
+                  <ProtectedRoutes>
+                    <EditLeadPage />
+                  </ProtectedRoutes>
+                ),
                 action: editLeadAction,
               },
             ],
           },
-          { path: "addLeads", element: <LeadForm />, action: addLeadAction },
+          {
+            path: "addLeads",
+            element: (
+              <ProtectedRoutes>
+                <LeadForm />
+              </ProtectedRoutes>
+            ),
+            action: addLeadAction,
+          },
           { path: "newLeads", element: <LeadStatusViewPage /> },
           { path: "leadByAgents", element: <LeadsBySalesAgentPage /> },
         ],
@@ -76,7 +93,14 @@ const router = createBrowserRouter([
         path: "salesAgent",
         children: [
           { index: true, element: <SalesAgent /> },
-          { path: "add", element: <AddNewAgent /> },
+          {
+            path: "add",
+            element: (
+              <ProtectedRoutes>
+                <AddNewAgent />
+              </ProtectedRoutes>
+            ),
+          },
         ],
       },
       { path: "report", element: <ReportPage /> },
@@ -87,7 +111,11 @@ const router = createBrowserRouter([
           { index: true, element: <Navigate to={"leads"} replace /> },
           {
             path: "leads",
-            element: <SettingLeadsPage />,
+            element: (
+              <ProtectedRoutes>
+                <SettingLeadsPage />
+              </ProtectedRoutes>
+            ),
             action: deleteLeadAction,
           },
           { path: "agents", element: <SalesAgents /> },

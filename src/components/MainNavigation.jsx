@@ -1,8 +1,7 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useLeadContext from "../context/LeadContext";
 import {
-  
   FaUsers,
   FaUserPlus,
   FaUserTie,
@@ -19,6 +18,7 @@ const MainNavigation = () => {
   const [open, setOpen] = useState(false);
   const { handleLogout, isLogin } = useLeadContext();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Auto close mobile menu on route change
   useEffect(() => {
@@ -129,6 +129,15 @@ const MainNavigation = () => {
         <div className="bg-dark d-md-none border-top border-secondary">
           <ul className="nav flex-column px-3 py-2 gap-2">
             <NavItems />
+            {isLogin && (
+              <button
+                onClick={() => handleLogout(navigate)}
+                className="btn btn-outline-light text-start mt-5 w-100"
+                style={{ marginTop: "auto", display: "block" }}
+              >
+                Logout <FaSignOutAlt />
+              </button>
+            )}
           </ul>
         </div>
       )}
@@ -153,8 +162,8 @@ const MainNavigation = () => {
             <NavItems />
             {isLogin && (
               <button
-                onClick={handleLogout}
-                className="nav-link text-start outline-light text-light btn-outline-light mt-5"
+                onClick={() => handleLogout(navigate)}
+                className="btn btn-outline-light text-start mt-5 w-100"
                 style={{ marginTop: "auto", display: "block" }}
               >
                 Logout <FaSignOutAlt />
