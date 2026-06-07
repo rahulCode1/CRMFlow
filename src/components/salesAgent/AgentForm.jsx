@@ -1,6 +1,6 @@
 import { Form, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
+import ModelOverlay from "../model/ModelOverlay";
 
 import SubmitLoadingSpinner from "../SubmitLoadingSpinnr";
 import {
@@ -9,6 +9,7 @@ import {
   showSuccessToast,
 } from "../../utils/toast";
 import useLeadContext from "../../context/LeadContext";
+import api from "../../utils/axios";
 
 const AgentForm = () => {
   const initialData = {
@@ -17,7 +18,7 @@ const AgentForm = () => {
   };
   const [formData, setFormData] = useState(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { setSalesAgent } = useLeadContext();
+  const { setSalesAgent, error, setError } = useLeadContext();
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,12 +34,8 @@ const AgentForm = () => {
 
     try {
       setIsSubmitting(true);
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/agents`,
-        formData
-      );
+      const response = await api.post(`/api/agents`, formData);
 
-     
       showSuccessToast(toastId, "New agent added successfully.");
       setSalesAgent((prevStat) => [
         ...prevStat,
@@ -47,9 +44,14 @@ const AgentForm = () => {
       setFormData(initialData);
       navigate(`/salesAgent`);
     } catch (error) {
+      setError(
+        error.response?.data?.message ||
+          "Error occurred while adding sales agent.",
+      );
       showErrorToast(
         toastId,
-        error.response?.data?.message || "Error occurred while add sales agent."
+        error.response?.data?.message ||
+          "Error occurred while add sales agent.",
       );
     }
     setIsSubmitting(false);
@@ -57,12 +59,17 @@ const AgentForm = () => {
 
   return (
     <>
+     {error &&  <ModelOverlay
+        title="Error occurred"
+        text={error}
+        onClose={() => setError(null)}
+      />}
       <div className="container-fluid p-0">
         {/* Header */}
         <div className="bg-white shadow-sm border-bottom sticky-top rounded">
           <div className="container-fluid  py-3">
             <div className="d-flex justify-content-between align-items-center">
-              <h1 className="h3 mb-0 fw-bold">Add  Agent</h1>
+              <h1 className="h3 mb-0 fw-bold">Add Agent</h1>
               <div className="d-flex gap-2">
                 <Link to="/" className="btn btn-outline-secondary">
                   <i className="bi bi-house-door me-2"></i>

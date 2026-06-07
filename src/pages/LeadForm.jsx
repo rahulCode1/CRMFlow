@@ -1,21 +1,28 @@
-import { Form, useNavigation, redirect , Link} from "react-router-dom";
-import axios from "axios";
+import { Form, useNavigation, redirect, Link } from "react-router-dom";
 import SubmitLoadingSpinner from "../components/SubmitLoadingSpinnr";
 import useLeadContext from "../context/LeadContext";
-
+import ModelOverlay from "../components/model/ModelOverlay";
 import {
   showLoadingToast,
   showSuccessToast,
   showErrorToast,
 } from "../utils/toast";
+import api from "../utils/axios";
 
 const LeadForm = () => {
-  const { salesAgent } = useLeadContext();
+  const { salesAgent, error, setError } = useLeadContext();
   const navigation = useNavigation();
   const isLoading = navigation.state === "submitting";
 
   return (
     <>
+      {error && (
+        <ModelOverlay
+          text={error}
+          title={"Error occurred"}
+          onClose={() => setError(null)}
+        />
+      )}
       <div className="bg-white shadow-sm border-bottom sticky-top rounded mb-4">
         <div className="container-fluid px-4 py-3">
           <div className="d-flex justify-content-between align-items-center">
@@ -205,17 +212,14 @@ export const action = async ({ request, params }) => {
   };
 
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads`,
-      data
-    );
+    const response = await api.post(`/api/leads`, data);
     console.log(response);
     showSuccessToast(toastId, "Lead  added successfully.");
     return redirect(`/leads`);
   } catch (error) {
     showErrorToast(
       toastId,
-      error.response?.data?.message || "Error occurred while add  lead ❌"
+      error.response?.data?.message || "Error occurred while add  lead ❌",
     );
   }
 };

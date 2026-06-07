@@ -1,18 +1,13 @@
-import {
-  
-  Link,
-  useFetcher,
-  useNavigation,
-} from "react-router-dom";
+import { Link, useFetcher, useNavigation } from "react-router-dom";
 import {
   showErrorToast,
   showLoadingToast,
   showSuccessToast,
 } from "../../utils/toast";
-import axios from "axios";
-const ManageLeads = ({leads }) => {
+import api from "../../utils/axios";
+const ManageLeads = ({ leads }) => {
   const fetcher = useFetcher();
-  
+
   const navigation = useNavigation();
 
   const isLoading = navigation.state === "submitting";
@@ -53,12 +48,12 @@ const ManageLeads = ({leads }) => {
                                   lead.status === "New"
                                     ? "bg-primary"
                                     : lead.status === "Contacted"
-                                    ? "bg-info"
-                                    : lead.status === "Qualified"
-                                    ? "bg-success"
-                                    : lead.status === "Proposal Sent"
-                                    ? "bg-warning text-dark"
-                                    : "bg-secondary"
+                                      ? "bg-info"
+                                      : lead.status === "Qualified"
+                                        ? "bg-success"
+                                        : lead.status === "Proposal Sent"
+                                          ? "bg-warning text-dark"
+                                          : "bg-secondary"
                                 }`}
                               >
                                 {lead.status}
@@ -68,8 +63,8 @@ const ManageLeads = ({leads }) => {
                                   lead.priority === "High"
                                     ? "bg-danger"
                                     : lead.priority === "Medium"
-                                    ? "bg-warning text-dark"
-                                    : "bg-secondary"
+                                      ? "bg-warning text-dark"
+                                      : "bg-secondary"
                                 }`}
                               >
                                 {lead.priority}
@@ -141,21 +136,19 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
 
   const leadId = formData.get("leadId");
-  const toastId = showLoadingToast("Delete lead...");
+  const toastId = showLoadingToast("Deleting lead...");
 
   try {
-    const response = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`
-    );
+    const response = await api.delete(`/api/leads/${leadId}`);
 
     showSuccessToast(
       toastId,
-      response?.data?.message || "Failed to delete lead."
+      response?.data?.message || "Lead deleted successfully.",
     );
   } catch (error) {
     showErrorToast(
       toastId,
-      error.response?.data?.message || "Failed to delete leads."
+      error.response?.data?.message || "Failed to delete leads.",
     );
   }
 };

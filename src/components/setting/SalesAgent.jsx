@@ -1,4 +1,3 @@
-import axios from "axios";
 import useLeadContext from "../../context/LeadContext";
 import { useState } from "react";
 import {
@@ -6,6 +5,7 @@ import {
   showLoadingToast,
   showSuccessToast,
 } from "../../utils/toast";
+import api from "../../utils/axios";
 
 const SalesAgent = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,23 +15,21 @@ const SalesAgent = () => {
     const toastId = showLoadingToast("Delete agent...");
     try {
       setIsLoading(true);
-      const response = await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/api/agents/${id}`
-      );
+      const response = await api.delete(`/api/agents/${id}`);
 
+      setSalesAgent((prevStat) => prevStat.filter((agent) => agent.id !== id));
       showSuccessToast(
         toastId,
-        response?.data?.message || "Agent deleted successfully."
+        response?.data?.message || "Agent deleted successfully.",
       );
     } catch (error) {
       showErrorToast(
         toastId,
-        error.response?.data?.message || "Failed to delete sales agent."
+        error.response?.data?.message || "Failed to delete sales agent.",
       );
+    } finally {
+      setIsLoading(false);
     }
-
-    setSalesAgent((prevStat) => prevStat.filter((agent) => agent.id !== id));
-    setIsLoading(false);
   };
 
   return (

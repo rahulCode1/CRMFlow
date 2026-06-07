@@ -18,7 +18,8 @@ const LeadsListItem = ({ leads }) => {
       ? filteredLeads
       : filteredLeads.filter(
           (lead) =>
-            lead.salesAgent && lead.salesAgent._id === searchParams.get("agent")
+            lead.salesAgent &&
+            lead.salesAgent._id === searchParams.get("agent"),
         );
 
   const leadsStatusArr = [
@@ -54,11 +55,11 @@ const LeadsListItem = ({ leads }) => {
 
   if (searchParams.get("timeToClose") === "ClosingSoon") {
     displayLeads = [...displayLeads].sort(
-      (a, b) => Number(a.timeToClose) - Number(b.timeToClose)
+      (a, b) => Number(a.timeToClose) - Number(b.timeToClose),
     );
   } else if (searchParams.get("timeToClose") === "tackingLonger") {
     displayLeads = [...displayLeads].sort(
-      (a, b) => Number(b.timeToClose) - Number(a.timeToClose)
+      (a, b) => Number(b.timeToClose) - Number(a.timeToClose),
     );
   }
 
@@ -209,7 +210,7 @@ const LeadsListItem = ({ leads }) => {
               </div>
               <div className="row g-3">
                 {displayLeads.map((lead, index) => (
-                  <Leads lead={lead} index={index} />
+                  <Leads lead={lead} key={index} />
                 ))}
               </div>
             </div>

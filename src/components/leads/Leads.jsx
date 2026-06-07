@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-const Leads = ({ lead , index }) => {
+const Leads = ({ lead }) => {
   return (
     <>
-      
-      <div key={index} className="col-12 col-xl-6">
+      <div className="col-12 col-xl-6">
         <Link to={`/leads/${lead.id}`} className="text-decoration-none">
           <div className="card border-0 shadow-sm lead-card">
             <div className="card-body p-3">
@@ -23,12 +22,12 @@ const Leads = ({ lead , index }) => {
                         lead.status === "New"
                           ? "bg-primary"
                           : lead.status === "Contacted"
-                          ? "bg-info"
-                          : lead.status === "Qualified"
-                          ? "bg-success"
-                          : lead.status === "Proposal Sent"
-                          ? "bg-warning text-dark"
-                          : "bg-secondary"
+                            ? "bg-info"
+                            : lead.status === "Qualified"
+                              ? "bg-success"
+                              : lead.status === "Proposal Sent"
+                                ? "bg-warning text-dark"
+                                : "bg-secondary"
                       }`}
                     >
                       {lead.status}
@@ -38,8 +37,8 @@ const Leads = ({ lead , index }) => {
                         lead.priority === "High"
                           ? "bg-danger"
                           : lead.priority === "Medium"
-                          ? "bg-warning text-dark"
-                          : "bg-secondary"
+                            ? "bg-warning text-dark"
+                            : "bg-secondary"
                       }`}
                     >
                       {lead.priority}

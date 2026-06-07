@@ -1,32 +1,31 @@
-import { Link,  useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Leads from "./Leads";
 
 import useLeadContext from "../../context/LeadContext";
-const LeadsBySalesAgent = ({allLeads}) => {
+const LeadsBySalesAgent = ({ allLeads }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { salesAgent } = useLeadContext();
- 
 
   const salesAgentId = searchParams.get("agentId");
   let filterLeads =
     salesAgentId === null
       ? allLeads
       : allLeads.filter(
-          (lead) => lead.salesAgent && lead.salesAgent.id === salesAgentId
+          (lead) => lead.salesAgent && lead.salesAgent.id === salesAgentId,
         );
 
   filterLeads =
     searchParams.get("status") === null
       ? filterLeads
       : filterLeads.filter(
-          (lead) => lead.status === searchParams.get("status")
+          (lead) => lead.status === searchParams.get("status"),
         );
 
   filterLeads =
     searchParams.get("priority") === null
       ? filterLeads
       : filterLeads.filter(
-          (lead) => lead.priority === searchParams.get("priority")
+          (lead) => lead.priority === searchParams.get("priority"),
         );
 
   const onUpdateParams = (key, value) => {
@@ -64,19 +63,20 @@ const LeadsBySalesAgent = ({allLeads}) => {
     <>
       <div className="min-vh-100 bg-light">
         {/* Header Section */}
-        <div className="bg-white shadow-sm mb-3">
-          <div className=" py-2 d-flex justify-content-between align-items-center px-2">
-            <h5 className=" mb-0 fw-bold">Leads by Sales Agent</h5>
-            <Link
-              to={"/"}
-              className="text-decoration-none  mb-2 d-inline-block  btn btn-secondary"
-            >
-              Back to dashboard
-            </Link>
+
+        <div className="bg-white shadow-sm border-bottom sticky-top mb-3">
+          <div className="container-fluid  py-3">
+            <div className="d-flex justify-content-between align-items-center">
+              <h1 className="h3 mb-0 fw-bold">Leads by Sales Agent</h1>
+              <Link to="/" className="btn btn-outline-secondary">
+                <i className="bi bi-house-door me-2"></i>
+                Back to dashboard
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className=" my-2">
+        <div className=" my-2 p-3">
           {/* Sales Agent Filter */}
           <div className="card mb-4 shadow-sm">
             <div className="card-body">

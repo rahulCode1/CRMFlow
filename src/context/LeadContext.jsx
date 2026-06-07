@@ -11,7 +11,7 @@ export const LeadProvider = ({ children }) => {
   const [salesAgent, setSalesAgent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(localStorage.getItem("userId"));
-
+  const [error, setError] = useState(null);
   const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
@@ -48,6 +48,8 @@ export const LeadProvider = ({ children }) => {
         isLogin,
         setIsLogin,
         handleLogout,
+        error,
+        setError,
       }}
     >
       {children}

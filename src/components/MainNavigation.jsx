@@ -1,12 +1,24 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useLeadContext from "../context/LeadContext";
+import {
+  
+  FaUsers,
+  FaUserPlus,
+  FaUserTie,
+  FaChartBar,
+  FaTags,
+  FaCog,
+  FaSignOutAlt,
+  FaLock,
+  FaTasks,
+  FaHome,
+} from "react-icons/fa";
 
 const MainNavigation = () => {
   const [open, setOpen] = useState(false);
   const { handleLogout, isLogin } = useLeadContext();
   const location = useLocation();
- 
 
   // Auto close mobile menu on route change
   useEffect(() => {
@@ -18,21 +30,21 @@ const MainNavigation = () => {
       <li className="nav-item">
         <NavLink to="/" end className="nav-link text-light">
           <i className="bi bi-house-door me-2"></i>
-          Dashboard
+          Dashboard <FaHome />
         </NavLink>
       </li>
 
       <li className="nav-item">
         <NavLink to="/leads" end className="nav-link text-light">
           <i className="bi bi-people me-2"></i>
-          Leads
+          Leads <FaTasks />
         </NavLink>
       </li>
 
       <li className="nav-item">
         <NavLink to="/leads/addLeads" className="nav-link text-light">
           <i className="bi bi-person-plus me-2"></i>
-          Add Leads
+          Add Leads <FaUserPlus />
         </NavLink>
       </li>
 
@@ -43,14 +55,14 @@ const MainNavigation = () => {
       <li className="nav-item">
         <NavLink to="/salesAgent" end className="nav-link text-light">
           <i className="bi bi-person-badge me-2"></i>
-          Sales Agents
+          Sales Agents <FaUserTie />
         </NavLink>
       </li>
 
       <li className="nav-item">
         <NavLink to="/salesAgent/add" className="nav-link text-light">
           <i className="bi bi-person-plus-fill me-2"></i>
-          Add Sales Agent
+          Add Sales Agent <FaUserPlus />
         </NavLink>
       </li>
 
@@ -61,47 +73,38 @@ const MainNavigation = () => {
       <li className="nav-item">
         <NavLink to="/report" className="nav-link text-light">
           <i className="bi bi-bar-chart me-2"></i>
-          Reports
+          Reports <FaChartBar />
         </NavLink>
       </li>
 
       <li className="nav-item">
         <NavLink to="/leads/newLeads" className="nav-link text-light">
           <i className="bi bi-star me-2"></i>
-          Leads Via Status
+          Leads Via Status <FaTags />
         </NavLink>
       </li>
 
       <li className="nav-item">
         <NavLink to="/leads/leadByAgents" className="nav-link text-light">
           <i className="bi bi-diagram-3 me-2"></i>
-          Leads by Agent
+          Leads by Agent <FaUsers />
         </NavLink>
       </li>
 
-      <li className="nav-item">
-        <NavLink to="/setting" className="nav-link text-light">
-          <i className="bi bi-gear me-2"></i>
-          Setting
-        </NavLink>
-      </li>
-      {!isLogin && (
-        <li className="nav-item">
-          <NavLink to="/login" className="nav-link text-light">
+      {isLogin && (
+        <li className="nav-item ">
+          <NavLink to="/setting" className="nav-link text-light">
             <i className="bi bi-gear me-2"></i>
-            Login
+            Setting <FaCog />
           </NavLink>
         </li>
       )}
-      {isLogin && (
-        <li className="nav-item">
-          <button
-            onClick={() => handleLogout()}
-            className="nav-link text-light"
-          >
+      {!isLogin && (
+        <li className="nav-item mt-5">
+          <NavLink to="/login" className="nav-link text-light">
             <i className="bi bi-gear me-2"></i>
-            Logout
-          </button>
+            Login <FaLock />
+          </NavLink>
         </li>
       )}
     </>
@@ -141,13 +144,22 @@ const MainNavigation = () => {
           top: 0,
         }}
       >
-        <div className="p-3 border-bottom border-secondary">
+        <div className="p-3 py-4 border-bottom border-secondary">
           <h5 className="text-white mb-0 fw-semibold">CRMFlow</h5>
         </div>
 
         <nav className="flex-grow-1 p-3">
           <ul className="nav nav-pills flex-column gap-2">
             <NavItems />
+            {isLogin && (
+              <button
+                onClick={handleLogout}
+                className="nav-link text-start outline-light text-light btn-outline-light mt-5"
+                style={{ marginTop: "auto", display: "block" }}
+              >
+                Logout <FaSignOutAlt />
+              </button>
+            )}
           </ul>
         </nav>
       </aside>

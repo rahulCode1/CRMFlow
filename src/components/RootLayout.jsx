@@ -17,7 +17,7 @@ const RootLayout = () => {
         draggable
       />
 
-      <main className="flex-grow-1 p-3 bg-light">
+      <main className="flex-grow-1  bg-light">
         <Outlet />
       </main>
     </div>

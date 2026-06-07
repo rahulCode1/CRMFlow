@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Form, useNavigation, redirect, Link } from "react-router-dom";
 import SubmitLoadingSpinner from "../../components/SubmitLoadingSpinnr";
 import {
@@ -8,6 +7,7 @@ import {
 } from "../../utils/toast";
 
 import useLeadContext from "../../context/LeadContext";
+import api from "../../utils/axios";
 
 const EditLeadForm = ({ lead }) => {
   const { salesAgent } = useLeadContext();
@@ -196,8 +196,8 @@ const EditLeadForm = ({ lead }) => {
         </div>
 
         <button disabled={isLoading} type="submit" className="btn btn-primary">
-          {isLoading && <SubmitLoadingSpinner />}
           {isLoading ? "Update..." : "Update Lead"}
+          {isLoading && <SubmitLoadingSpinner />}
         </button>
       </Form>
     </>
@@ -223,17 +223,14 @@ export const action = async ({ request, params }) => {
   };
 
   try {
-    await axios.patch(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`,
-      data
-    );
+    await api.patch(`/api/leads/${leadId}`, data);
 
     showSuccessToast(toastId, "Lead  update successfully.");
     return redirect(`/leads/${leadId}`);
   } catch (error) {
     showErrorToast(
       toastId,
-      error.response?.data?.message || "Error occurred while update lead ❌"
+      error.response?.data?.message || "Error occurred while update lead ❌",
     );
   }
 };

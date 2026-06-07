@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Await, redirect, useRouteLoaderData } from "react-router-dom";
 import EditLeadForm from "../components/leads/EditLeadForm";
 import {
@@ -8,6 +7,7 @@ import {
 } from "../utils/toast";
 import { Suspense } from "react";
 import Loading from "../components/Loading";
+import api from "../utils/axios";
 
 const EditLeadPage = () => {
   const { lead } = useRouteLoaderData("leadId");
@@ -42,8 +42,8 @@ export const action = async ({ request, params }) => {
   };
 
   try {
-    await axios.patch(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`,
+    await api.patch(
+      `/api/leads/${leadId}`,
       data
     );
 

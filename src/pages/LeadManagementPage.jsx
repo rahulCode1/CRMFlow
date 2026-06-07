@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Await, redirect, useRouteLoaderData } from "react-router-dom";
 import LeadManagement from "../components/leads/LeadManagement";
 import {
@@ -8,6 +7,7 @@ import {
 } from "../utils/toast";
 import { Suspense } from "react";
 import Loading from "../components/Loading";
+import api from "../utils/axios";
 
 const LeadManagementPage = () => {
   const { lead } = useRouteLoaderData("leadId");
@@ -31,8 +31,8 @@ export default LeadManagementPage;
 
 const lead = async (leadId) => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`
+    const response = await api.get(
+      `/api/leads/${leadId}`
     );
 
     // console.log(response.data);
@@ -68,8 +68,8 @@ export const actions = async ({ request, params }) => {
   };
 
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}/comments`,
+    const response = await api.post(
+      `/api/leads/${leadId}/comments`,
       data
     );
 

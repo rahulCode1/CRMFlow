@@ -4,10 +4,10 @@ import {
   showLoadingToast,
   showSuccessToast,
 } from "../../utils/toast";
-import axios from "axios";
 import ManageLeads from "./ManageLeads";
 import Loading from "../Loading";
 import { Suspense } from "react";
+import api from "../../utils/axios";
 
 const SettingLeadsPage = () => {
   const { leads } = useRouteLoaderData("allLeads");
@@ -30,8 +30,8 @@ export const action = async ({ request }) => {
   const toastId = showLoadingToast("Delete lead...");
 
   try {
-    const response = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`
+    const response = await api.delete(
+      `/api/leads/${leadId}`
     );
 
     showSuccessToast(
