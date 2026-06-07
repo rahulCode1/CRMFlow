@@ -34,7 +34,7 @@ const AgentForm = () => {
     try {
       setIsSubmitting(true);
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/agents`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/agents`,
         formData
       );
 

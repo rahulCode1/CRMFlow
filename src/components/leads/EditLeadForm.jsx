@@ -22,7 +22,7 @@ const EditLeadForm = ({ lead }) => {
           <div className="d-flex justify-content-between align-items-center">
             <h1 className="h3 mb-0 fw-bold text-dark">Edit lead </h1>
             <Link
-              to="leads/addLeads"
+              to="/"
               className="btn btn-primary d-none d-md-inline-flex align-items-center"
             >
               <i className="bi bi-plus-circle me-2"></i>
@@ -224,7 +224,7 @@ export const action = async ({ request, params }) => {
 
   try {
     await axios.patch(
-      `${process.env.REACT_APP_BACKEND_URL}/leads/${leadId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`,
       data
     );
 

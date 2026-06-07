@@ -16,7 +16,7 @@ const SalesAgent = () => {
     try {
       setIsLoading(true);
       const response = await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/agents/${id}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/agents/${id}`
       );
 
       showSuccessToast(

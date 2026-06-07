@@ -1,0 +1,163 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(59, 130, 246, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  background: rgba(59, 130, 246, 0.15);
+
+  color: #93c5fd;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: white;
+
+  margin-bottom: 0.6rem;
+
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.65);
+
+  line-height: 1.7;
+
+  margin-bottom: 1.8rem;
+
+  font-size: 0.95rem;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+
+  padding: 1.25rem;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.featureRow {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.featureEmoji {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  flex-shrink: 0;
+}
+
+.featureLabel {
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.72rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  margin-bottom: 0.2rem;
+}
+
+.featureValue {
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 0.88rem;
+
+  line-height: 1.5;
+}
+
+.googleBtn {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  padding: 0.95rem;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #111827;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.googleBtn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);
+}
+
+.legal {
+  margin-top: 1rem;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.75rem;
+}

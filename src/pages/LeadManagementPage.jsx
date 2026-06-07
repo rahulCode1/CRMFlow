@@ -32,7 +32,7 @@ export default LeadManagementPage;
 const lead = async (leadId) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/leads/${leadId}`
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`
     );
 
     // console.log(response.data);
@@ -50,23 +50,6 @@ const lead = async (leadId) => {
 
 export const loader = async ({ request, params }) => {
   const leadId = params.id;
-
-  // try {
-  //   const response = await axios.get(
-  //     `${process.env.REACT_APP_BACKEND_URL}/leads/${leadId}`
-  //   );
-
-  //   console.log(response.data);
-  //   return response.data;
-  // } catch (error) {
-  //   throw new Response(
-  //     JSON.stringify({
-  //       message:
-  //         error.response?.data?.message || "Failed to fetch lead details.",
-  //     }),
-  //     { status: error.response?.status || 500 }
-  //   );
-  // }
 
   return {
     lead: lead(leadId),
@@ -86,7 +69,7 @@ export const actions = async ({ request, params }) => {
 
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/leads/${leadId}/comments`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}/comments`,
       data
     );
 

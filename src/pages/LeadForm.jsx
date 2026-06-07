@@ -206,7 +206,7 @@ export const action = async ({ request, params }) => {
 
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/leads`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads`,
       data
     );
     console.log(response);

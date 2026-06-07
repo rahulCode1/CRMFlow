@@ -25,7 +25,7 @@ export default DashboardScreen;
 const leads = async () => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/leads`
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads`
     );
 
     return response?.data?.leads;

@@ -31,7 +31,7 @@ export const action = async ({ request }) => {
 
   try {
     const response = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_URL}/leads/${leadId}`
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`
     );
 
     showSuccessToast(

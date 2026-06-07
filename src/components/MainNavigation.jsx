@@ -1,9 +1,13 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import useLeadContext from "../context/LeadContext";
 
 const MainNavigation = () => {
   const [open, setOpen] = useState(false);
+  const { handleLogout, isLogin } = useLeadContext();
   const location = useLocation();
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
 
   // Auto close mobile menu on route change
   useEffect(() => {
@@ -34,9 +38,7 @@ const MainNavigation = () => {
       </li>
 
       <li className="nav-item mt-3">
-        <div className="text-muted small text-uppercase px-3">
-          Sales Team
-        </div>
+        <div className="text-muted small text-uppercase px-3">Sales Team</div>
       </li>
 
       <li className="nav-item">
@@ -54,9 +56,7 @@ const MainNavigation = () => {
       </li>
 
       <li className="nav-item mt-3">
-        <div className="text-muted small text-uppercase px-3">
-          Analytics
-        </div>
+        <div className="text-muted small text-uppercase px-3">Analytics</div>
       </li>
 
       <li className="nav-item">
@@ -86,6 +86,25 @@ const MainNavigation = () => {
           Setting
         </NavLink>
       </li>
+      {!isLogin && (
+        <li className="nav-item">
+          <NavLink to="/login" className="nav-link text-light">
+            <i className="bi bi-gear me-2"></i>
+            Login
+          </NavLink>
+        </li>
+      )}
+      {isLogin && (
+        <li className="nav-item">
+          <button
+            onClick={() => handleLogout()}
+            className="nav-link text-light"
+          >
+            <i className="bi bi-gear me-2"></i>
+            Logout
+          </button>
+        </li>
+      )}
     </>
   );
 

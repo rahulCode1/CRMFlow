@@ -1,60 +1,83 @@
-
-import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "react-toastify/dist/ReactToastify.css";
-import "./utils/chartSetup"
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
-import LeadForm , {action as addLeadAction} from './pages/LeadForm';
-import RootLayout from './components/RootLayout';
-import { LeadProvider } from './context/LeadContext';
-import ErrorPage from './pages/ErrorPage';
-import AddNewAgent from './pages/AddNewAgent';
-import SalesAgent from './pages/SalesAgents';
-import DashboardScreen, { loader as allLeadsLoader } from './pages/DashboardScreen';
-import LeadManagementPage, { loader as leadManagementLoader, actions as commentAction } from './pages/LeadManagementPage';
-import LeadsList from './pages/LeadsList';
-import ReportPage from './pages/ReportPage';
-import LeadStatusViewPage from './pages/LeadStatusViewPage';
-import EditLeadPage, { action as editLeadAction } from './pages/EditLeadPage';
-import LeadsBySalesAgentPage from './pages/LeadsBySalesAgentPage';
-import SettingLayout from "./components/layout/SettingLayout"
-import SettingLeadsPage, { action as deleteLeadAction } from './components/setting/SettingLeadsPage';
-import SalesAgents from './components/setting/SalesAgent';
+import "./utils/chartSetup";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import LeadForm, { action as addLeadAction } from "./pages/LeadForm";
+import RootLayout from "./components/RootLayout";
+import { LeadProvider } from "./context/LeadContext";
+import ErrorPage from "./pages/ErrorPage";
+import AddNewAgent from "./pages/AddNewAgent";
+import SalesAgent from "./pages/SalesAgents";
+import DashboardScreen, {
+  loader as allLeadsLoader,
+} from "./pages/DashboardScreen";
+import LeadManagementPage, {
+  loader as leadManagementLoader,
+  actions as commentAction,
+} from "./pages/LeadManagementPage";
+import LeadsList from "./pages/LeadsList";
+import ReportPage from "./pages/ReportPage";
+import LeadStatusViewPage from "./pages/LeadStatusViewPage";
+import EditLeadPage, { action as editLeadAction } from "./pages/EditLeadPage";
+import LeadsBySalesAgentPage from "./pages/LeadsBySalesAgentPage";
+import SettingLayout from "./components/layout/SettingLayout";
+import SettingLeadsPage, {
+  action as deleteLeadAction,
+} from "./components/setting/SettingLeadsPage";
+import SalesAgents from "./components/setting/SalesAgent";
+import LoginPage from "../src/pages/LoginPage";
+import VerifyLogin from "./pages/VerifyLogin";
 
 const router = createBrowserRouter([
   {
-    path: "",
+    path: "/",
     loader: allLeadsLoader,
     id: "allLeads",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
 
     children: [
-      { index: true, element: <DashboardScreen />, },
+      { index: true, element: <DashboardScreen /> },
+      { path: "login", element: <LoginPage /> },
+      { path: "v1/profile/google", element: <VerifyLogin /> },
       {
-        path: "leads", children: [
+        path: "leads",
+        children: [
           { index: true, element: <LeadsList /> },
           {
             path: ":id",
             loader: leadManagementLoader,
             id: "leadId",
             children: [
-
-              { index: true, element: <LeadManagementPage />, action: commentAction },
-              { path: "edit", element: <EditLeadPage />, action: editLeadAction },
-            ]
+              {
+                index: true,
+                element: <LeadManagementPage />,
+                action: commentAction,
+              },
+              {
+                path: "edit",
+                element: <EditLeadPage />,
+                action: editLeadAction,
+              },
+            ],
           },
-          { path: "addLeads", element: <LeadForm /> , action: addLeadAction},
+          { path: "addLeads", element: <LeadForm />, action: addLeadAction },
           { path: "newLeads", element: <LeadStatusViewPage /> },
-          { path: "leadByAgents", element: <LeadsBySalesAgentPage /> }
-        ]
+          { path: "leadByAgents", element: <LeadsBySalesAgentPage /> },
+        ],
       },
       {
-        path: "salesAgent", children: [
+        path: "salesAgent",
+        children: [
           { index: true, element: <SalesAgent /> },
-          { path: "add", element: <AddNewAgent /> }
-        ]
+          { path: "add", element: <AddNewAgent /> },
+        ],
       },
       { path: "report", element: <ReportPage /> },
       {
@@ -62,20 +85,22 @@ const router = createBrowserRouter([
         element: <SettingLayout />,
         children: [
           { index: true, element: <Navigate to={"leads"} replace /> },
-          { path: "leads", element: <SettingLeadsPage />, action: deleteLeadAction },
-          { path: "agents", element: <SalesAgents /> }
-        ]
-      }
-    ]
-  }
-])
-
+          {
+            path: "leads",
+            element: <SettingLeadsPage />,
+            action: deleteLeadAction,
+          },
+          { path: "agents", element: <SalesAgents /> },
+        ],
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
     <LeadProvider>
-
-      <RouterProvider router={router}  />
+      <RouterProvider router={router} />
     </LeadProvider>
   );
 }

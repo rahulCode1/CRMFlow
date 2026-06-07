@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-
+import { showLoadingToast, showSuccessToast } from "../utils/toast";
 const LeadContext = createContext();
 
 const useLeadContext = () => useContext(LeadContext);
@@ -10,6 +10,7 @@ export default useLeadContext;
 export const LeadProvider = ({ children }) => {
   const [salesAgent, setSalesAgent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLogin, setIsLogin] = useState(localStorage.getItem("userId"));
 
   const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -17,7 +18,7 @@ export const LeadProvider = ({ children }) => {
     const fetchAllSalesAgent = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`${apiUrl}/agents`);
+        const response = await axios.get(`${apiUrl}/api/agents`);
         const salesAgent = response.data?.allSalesAgents;
 
         setSalesAgent(salesAgent || []);
@@ -31,12 +32,22 @@ export const LeadProvider = ({ children }) => {
     fetchAllSalesAgent();
   }, [apiUrl]);
 
+  const handleLogout = () => {
+    const toastId = showLoadingToast("Loging out...");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setIsLogin(null);
+    showSuccessToast(toastId, "User logout successfully.");
+  };
   return (
     <LeadContext.Provider
       value={{
         isLoading,
         salesAgent,
         setSalesAgent,
+        isLogin,
+        setIsLogin,
+        handleLogout,
       }}
     >
       {children}

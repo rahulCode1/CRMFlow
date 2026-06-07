@@ -43,7 +43,7 @@ export const action = async ({ request, params }) => {
 
   try {
     await axios.patch(
-      `${process.env.REACT_APP_BACKEND_URL}/leads/${leadId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/leads/${leadId}`,
       data
     );
 
