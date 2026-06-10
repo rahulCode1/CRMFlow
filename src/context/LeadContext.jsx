@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { showLoadingToast, showSuccessToast } from "../utils/toast";
 const LeadContext = createContext();
 
