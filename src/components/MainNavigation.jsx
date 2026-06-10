@@ -129,7 +129,7 @@ const MainNavigation = () => {
       {/* Mobile Menu */}
       {open && (
         <div className="bg-dark d-md-none border-top border-secondary">
-          <ul className="nav flex-column px-3 py-2 gap-2">
+          <ul className="nav flex-column px-3 py-2 gap-2 mb-3">
             <NavItems />
             {isLogin && (
               <button
