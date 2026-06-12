@@ -31,9 +31,7 @@ export default LeadManagementPage;
 
 const lead = async (leadId) => {
   try {
-    const response = await api.get(
-      `/api/leads/${leadId}`
-    );
+    const response = await api.get(`/api/leads/${leadId}`);
 
     // console.log(response.data);
     return response.data;
@@ -43,7 +41,7 @@ const lead = async (leadId) => {
         message:
           error.response?.data?.message || "Failed to fetch lead details.",
       }),
-      { status: error.response?.status || 500 }
+      { status: error.response?.status || 500 },
     );
   }
 };
@@ -59,7 +57,7 @@ export const loader = async ({ request, params }) => {
 export const actions = async ({ request, params }) => {
   const formData = await request.formData();
   const leadId = params.id;
-  const toastId = showLoadingToast("Adding new agent...");
+  const toastId = showLoadingToast("Adding new comment...");
 
   const data = {
     name: formData.get("name"),
@@ -68,20 +66,17 @@ export const actions = async ({ request, params }) => {
   };
 
   try {
-    const response = await api.post(
-      `/api/leads/${leadId}/comments`,
-      data
-    );
+    const response = await api.post(`/api/leads/${leadId}/comments`, data);
 
     showSuccessToast(
       toastId,
-      response?.data?.message || "Comment added successfully."
+      response?.data?.message || "Comment added successfully.",
     );
     return redirect(`/leads/${leadId}`);
   } catch (error) {
     showErrorToast(
       leadId,
-      error.response?.data?.message || "Error occurred while add comment."
+      error.response?.data?.message || "Error occurred while adding comment.",
     );
   }
 };

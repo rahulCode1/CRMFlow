@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import useLeadContext from "../../context/LeadContext";
 import Leads from "./Leads";
 
 const LeadsListItem = ({ leads }) => {
-  const [salesAgentId, setSalesAgentId] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const { salesAgent } = useLeadContext();
 
@@ -182,7 +180,7 @@ const LeadsListItem = ({ leads }) => {
                   </select>
                 </div>
 
-               
+        
               </div>
             </div>
           </div>
