@@ -182,22 +182,7 @@ const LeadsListItem = ({ leads }) => {
                   </select>
                 </div>
 
-                {/* Clear Filters */}
-                {(searchParams.toString() || salesAgentId) && (
-                  <div className="col-12 col-md-1">
-                    <button
-                      className="btn btn-outline-secondary btn-sm w-100"
-                      onClick={() => {
-                        setSearchParams({});
-                        setSalesAgentId(null);
-                      }}
-                      title="Clear all filters"
-                    >
-                      <i className="bi bi-x-circle"></i>
-                      <span className="d-md-none ms-1">Clear</span>
-                    </button>
-                  </div>
-                )}
+               
               </div>
             </div>
           </div>

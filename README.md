@@ -15,7 +15,7 @@ Built with React frontend, Express/Node backend, Mongodb database.
 
 ```
 git clone  https://github.com/rahulCode1/CRMFlow.git
-cd my-app
+cd CRMFlow
 npm install
 npm start
 ```
@@ -27,6 +27,7 @@ npm start
 - Node JS
 - Express
 - Mongodb
+- JWT
 
 ## Demo Video
 
@@ -36,6 +37,12 @@ watch a walkthrough (6 minutes) of all the major features of this app:
 ---
 
 ## Features
+
+**Login**
+
+- Google OAuth2.0
+- JWT
+
 
 **Home**
 
@@ -97,7 +104,7 @@ Sample Response
 {id, name, source...}
 ```
 
-### **GET api/lead/id**<br>
+### **GET api/lead/:id**<br>
 
 Lead details
 Sample Response
@@ -106,7 +113,7 @@ Sample Response
 {id, name, source...}
 ```
 
-### **PATCH api/lead/id**<br>
+### **PATCH api/lead/:id**<br>
 
 Edit lead
 Sample Response
@@ -115,11 +122,11 @@ Sample Response
 {id, name, source...}
 ```
 
-### **DELETE api/lead/id**<br>
+### **DELETE api/lead/:id**<br>
 
 Delete lead
 
-### **POST api/lead/id/comments**<br>
+### **POST api/lead/:id/comments**<br>
 
 Add comment on lead
 Sample Response
@@ -128,7 +135,7 @@ Sample Response
 {id, author, commentText, ...}
 ```
 
-### **GET api/lead/id/comments**<br>
+### **GET api/lead/:id/comments**<br>
 
 Get all comments
 Sample Response
@@ -190,7 +197,7 @@ Sample response
 [{name, email}, ...]
 ```
 
-## **DELETE api/agent/id**<br>
+## **DELETE api/agent/:id**<br>
 
 Delete sales agent
 Sample response

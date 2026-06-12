@@ -41,16 +41,14 @@ const MainNavigation = () => {
         </NavLink>
       </li>
 
-      <li className="nav-item">
-        <NavLink to="/leads/addLeads" className="nav-link text-light">
-          <i className="bi bi-person-plus me-2"></i>
-          Add Leads <FaUserPlus />
-        </NavLink>
-      </li>
-
-      <li className="nav-item mt-3">
-        <div className="text-muted small text-uppercase px-3">Sales Team</div>
-      </li>
+      {isLogin && (
+        <li className="nav-item">
+          <NavLink to="/leads/addLeads" className="nav-link text-light">
+            <i className="bi bi-person-plus me-2"></i>
+            Add Leads <FaUserPlus />
+          </NavLink>
+        </li>
+      )}
 
       <li className="nav-item">
         <NavLink to="/salesAgent" end className="nav-link text-light">
@@ -59,16 +57,14 @@ const MainNavigation = () => {
         </NavLink>
       </li>
 
-      <li className="nav-item">
-        <NavLink to="/salesAgent/add" className="nav-link text-light">
-          <i className="bi bi-person-plus-fill me-2"></i>
-          Add Sales Agent <FaUserPlus />
-        </NavLink>
-      </li>
-
-      <li className="nav-item mt-3">
-        <div className="text-muted small text-uppercase px-3">Analytics</div>
-      </li>
+      {isLogin && (
+        <li className="nav-item">
+          <NavLink to="/salesAgent/add" className="nav-link text-light">
+            <i className="bi bi-person-plus-fill me-2"></i>
+            Add Sales Agent <FaUserPlus />
+          </NavLink>
+        </li>
+      )}
 
       <li className="nav-item">
         <NavLink to="/report" className="nav-link text-light">
@@ -100,9 +96,8 @@ const MainNavigation = () => {
         </li>
       )}
 
-
       {!isLogin && (
-        <li className="nav-item mt-5">
+        <li className="nav-item" style={{ marginTop: "auto" }}>
           <NavLink to="/login" className="nav-link text-light">
             <i className="bi bi-gear me-2"></i>
             Login <FaLock />
@@ -122,7 +117,7 @@ const MainNavigation = () => {
           className="btn btn-outline-light"
           onClick={() => setOpen(!open)}
         >
-          <i className="bi bi-list fs-4">☰</i>
+          <i className="bi bi-list fs-4">{open ? "X" : "☰"}</i>
         </button>
       </nav>
 
@@ -131,6 +126,7 @@ const MainNavigation = () => {
         <div className="bg-dark d-md-none border-top border-secondary">
           <ul className="nav flex-column px-3 py-2 gap-2 mb-3">
             <NavItems />
+
             {isLogin && (
               <button
                 onClick={() => handleLogout(navigate)}
@@ -159,19 +155,20 @@ const MainNavigation = () => {
           <h5 className="text-white mb-0 fw-semibold">CRMFlow</h5>
         </div>
 
-        <nav className="flex-grow-1 p-3">
+        <nav className="flex-grow-1 p-3 d-flex flex-column">
           <ul className="nav nav-pills flex-column gap-2">
             <NavItems />
-            {isLogin && (
-              <button
-                onClick={() => handleLogout(navigate)}
-                className="btn btn-outline-light text-start mt-5 w-100"
-                style={{ marginTop: "auto", display: "block" }}
-              >
-                Logout <FaSignOutAlt />
-              </button>
-            )}
           </ul>
+
+          {isLogin && (
+            <button
+              onClick={() => handleLogout(navigate)}
+              className="btn btn-outline-light text-start w-100 mt-auto"
+              style={{ marginTop: "auto", display: "block" }}
+            >
+              Logout <FaSignOutAlt />
+            </button>
+          )}
         </nav>
       </aside>
     </>
