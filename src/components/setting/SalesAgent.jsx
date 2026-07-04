@@ -8,13 +8,17 @@ import {
 import api from "../../utils/axios";
 
 const SalesAgent = () => {
+  const [agentId, setAgentId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { salesAgent, setSalesAgent } = useLeadContext();
 
   const deleteSalesAgent = async (id) => {
+
+
     const toastId = showLoadingToast("Delete agent...");
     try {
       setIsLoading(true);
+      setAgentId(id);
       const response = await api.delete(`/api/agents/${id}`);
 
       setSalesAgent((prevStat) => prevStat.filter((agent) => agent.id !== id));
@@ -32,6 +36,7 @@ const SalesAgent = () => {
     }
   };
 
+
   return (
     <>
       <div className="container-fluid p-0">
@@ -46,9 +51,26 @@ const SalesAgent = () => {
                       {salesAgent.map((agent, index) => (
                         <div key={index} className="list-group-item">
                           <div className="d-flex align-items-center">
-                            <div className="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
-                              <i className="bi bi-person-fill text-primary fs-5"></i>
-                            </div>
+                            {agent?.profileImg ? (
+                              <img
+                                src={agent.profileImg}
+                                alt={agent.name}
+                                style={{
+                                  objectFit: "cover",
+                                  width: "35px",
+                                  height: "35px",
+                                  borderRadius: "50%",
+                                }}
+                                className="me-3"
+                              />
+                            ) : (
+                              <div
+                                style={{ width: "30px", height: "30px" }}
+                                className="bg-primary bg-opacity-10 rounded-circle p-3 me-3"
+                              >
+                                <i className="bi bi-person-fill text-primary fs-5"></i>
+                              </div>
+                            )}
                             <div className="flex-grow-1">
                               <h6 className="mb-1 fw-semibold">{agent.name}</h6>
                               <small className="text-muted">
@@ -61,11 +83,15 @@ const SalesAgent = () => {
                             </div>
                             <div>
                               <button
-                                disabled={isLoading}
+                                disabled={isLoading && agent.id === agentId}
                                 onClick={() => deleteSalesAgent(agent.id)}
                                 className="btn btn-danger"
                               >
-                                Delete
+                                {isLoading && agent.id === agentId ? (
+                                  <span className="spinner-border spinner-sm ms-2" />
+                                ) : (
+                                  "Delete"
+                                )}
                               </button>
                             </div>
                           </div>

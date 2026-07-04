@@ -18,6 +18,8 @@ const AgentForm = () => {
   };
   const [formData, setFormData] = useState(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [file, setFile] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
   const { setSalesAgent, error, setError } = useLeadContext();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -28,20 +30,41 @@ const AgentForm = () => {
     }));
   };
 
+  const handleFileSelect = (e) => {
+    if (e.target && e.target.files[0]) {
+      const file = e.target.files[0];
+      const previewUrl = URL.createObjectURL(file);
+      setPreviewUrl(previewUrl);
+      setFile(file);
+    }
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    if (!file) {
+      return setError("Please select profile image.");
+    }
+
     const toastId = showLoadingToast("Adding new agent...");
 
     try {
       setIsSubmitting(true);
-      const response = await api.post(`/api/agents`, formData);
 
-      showSuccessToast(toastId, "New agent added successfully.");
+      const userData = new FormData();
+      userData.append("name", formData.name);
+      userData.append("email", formData.email);
+      userData.append("image", file);
+      const response = await api.post(`/api/agents`, userData);
+
       setSalesAgent((prevStat) => [
         ...prevStat,
         { ...response.data.savedAgent },
       ]);
       setFormData(initialData);
+      setFile("");
+      setPreviewUrl("");
+      showSuccessToast(toastId, "New agent added successfully.");
       navigate(`/salesAgent`);
     } catch (error) {
       setError(
@@ -59,11 +82,13 @@ const AgentForm = () => {
 
   return (
     <>
-     {error &&  <ModelOverlay
-        title="Error occurred"
-        text={error}
-        onClose={() => setError(null)}
-      />}
+      {error && (
+        <ModelOverlay
+          title="Error occurred"
+          text={error}
+          onClose={() => setError(null)}
+        />
+      )}
       <div className="container-fluid p-0">
         {/* Header */}
         <div className="bg-white shadow-sm border-bottom sticky-top rounded">
@@ -81,7 +106,7 @@ const AgentForm = () => {
         </div>
 
         {/* Form Container */}
-        <div className=" py-4">
+        <div className="container py-4" style={{ maxWidth: "900px" }}>
           <div className="row justify-content-center">
             <div className="col-lg-6 col-md-8">
               <div className="card shadow-sm">
@@ -118,7 +143,38 @@ const AgentForm = () => {
                         className="form-control"
                       />
                     </div>
+                    <div className="mb-4">
+                      <label htmlFor="image" className="form-label">
+                        Profle image
+                      </label>
+                      <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        required
+                        onChange={handleFileSelect}
+                        className="form-control"
+                        accept=".jpg,.jpeg,.png"
+                      />
+                    </div>
 
+                    <div
+                      className="mb-3"
+                      style={{
+                        margin: "auto",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {previewUrl && (
+                        <img
+                          src={previewUrl}
+                          alt="Preview"
+                          className="img img-fluid"
+                          style={{ objectFit: "cover", maxHeight: "250px" }}
+                        />
+                      )}
+                    </div>
                     {/* Submit Buttons */}
                     <div className="d-flex gap-2">
                       <button

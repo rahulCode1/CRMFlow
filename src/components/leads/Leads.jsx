@@ -8,7 +8,7 @@ const Leads = ({ lead }) => {
             <div className="card-body p-3">
               <div className="d-flex align-items-start">
                 {/* Lead Icon */}
-                <div className="bg-primary bg-opacity-10 rounded-circle p-2 me-3 flex-shrink-0">
+                <div className="d-none d-md-block bg-primary bg-opacity-10 rounded-circle p-2 me-3 flex-shrink-0">
                   <i className="bi bi-person-fill text-primary fs-5"></i>
                 </div>
 

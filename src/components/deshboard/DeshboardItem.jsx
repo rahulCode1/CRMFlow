@@ -14,9 +14,9 @@ const DashboardItem = ({ leads }) => {
       <div className="container-fluid p-0">
         {/* Header */}
         <div className="bg-white shadow-sm border-bottom sticky-top rounded">
-          <div className="container-fluid px-4 py-3">
+          <div className="container-fluid px-4 py-2 py-md-3">
             <div className="d-flex justify-content-between align-items-center">
-              <h1 className="h3 mb-0 fw-bold text-dark">Dashboard</h1>
+              <h1 className="h3 mb-0 fw-bold text-dark fs-4">Dashboard</h1>
               <Link
                 to="leads/addLeads"
                 className="btn btn-primary d-none d-md-inline-flex align-items-center"

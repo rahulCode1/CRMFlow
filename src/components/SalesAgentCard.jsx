@@ -20,6 +20,8 @@ const SalesAgentsCard = ({ salesAgent, isLoading }) => {
           </div>
         </div>
 
+        
+
         {/* Main Content */}
         <div className="container-fluid  py-4 ">
           <div className="row justify-content-center ">
@@ -33,9 +35,27 @@ const SalesAgentsCard = ({ salesAgent, isLoading }) => {
                       {salesAgent.map((agent, index) => (
                         <div key={index} className="list-group-item">
                           <div className="d-flex align-items-center">
-                            <div className="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
-                              <i className="bi bi-person-fill text-primary fs-5"></i>
-                            </div>
+                            {agent?.profileImg ? (
+                              <img
+                                src={agent.profileImg}
+                                alt={agent.name}
+                                style={{
+                                  objectFit: "cover",
+                                  width: "35px",
+                                  height: "35px",
+                                  borderRadius: "50%",
+                                }}
+                                className="me-3"
+                              />
+                            ) : (
+                              <div
+                                style={{ width: "30px", height: "30px" }}
+                                className="bg-primary bg-opacity-10 rounded-circle p-3 me-3"
+                              >
+                                <i className="bi bi-person-fill text-primary fs-5"></i>
+                              </div>
+                            )}
+
                             <div className="flex-grow-1">
                               <h6 className="mb-1 fw-semibold">{agent.name}</h6>
                               <small className="text-muted">
