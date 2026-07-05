@@ -67,7 +67,7 @@ const CommentForm = () => {
               <div className="d-flex justify-content-end">
                 <button
                   type="submit"
-                  className="btn btn-primary d-flex align-items-center gap-2"
+                  className="btn btn-primary d-flex align-items-center gap-2 btn-sm"
                   disabled={isLoading}
                 >
                   {isLoading && <SubmitLoadingSpinner />}

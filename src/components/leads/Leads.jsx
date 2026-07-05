@@ -49,7 +49,10 @@ const Leads = ({ lead }) => {
                     <div className="col-sm-6">
                       <small className="text-muted d-block">
                         <i className="bi bi-person-badge me-1"></i>
-                        {lead.salesAgent ? lead.salesAgent.name : "Unknown"}
+                        {lead.salesAgent
+                          ? lead.salesAgent.name[0].toUpperCase() +
+                            lead.salesAgent.name.slice(1)
+                          : "Unknown"}
                       </small>
                     </div>
                     <div className="col-sm-6">

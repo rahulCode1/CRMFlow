@@ -20,186 +20,191 @@ const EditLeadForm = ({ lead }) => {
       <div className="bg-white shadow-sm border-bottom sticky-top rounded mb-4">
         <div className="container-fluid px-4 py-3">
           <div className="d-flex justify-content-between align-items-center">
-            <h1 className="h3 mb-0 fw-bold text-dark">Edit lead </h1>
+            <h1 className="h5 mb-0 fw-bold text-dark">Edit lead </h1>
             <Link
               to="/"
-              className="btn btn-primary d-none d-md-inline-flex align-items-center"
+              className="btn btn-primary d-none d-md-inline-flex align-items-center btn-sm"
             >
-              <i className="bi bi-plus-circle me-2"></i>
               Go to Dashboard
             </Link>
           </div>
         </div>
       </div>
-      <Form method="post" className="container py-4 shadow rounded">
-        {/* Lead Name */}
-        <div className="mb-3">
-          <label className="form-label">Lead Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="form-control"
-            defaultValue={lead && lead.name}
-            required
-          />
-        </div>
-
-        {/* Source & Closed At */}
-        <div className="row">
-          <div className="col">
-            <div className="mb-3">
-              <label className="form-label">Lead Source</label>
-              <select
-                id="source"
-                name="source"
-                className="form-select"
-                defaultValue={lead && lead.source}
-                required
-              >
-                <option value="" disabled>
-                  Select Lead Source
-                </option>
-                <option value="Website">Website</option>
-                <option value="Referral">Referral</option>
-                <option value="Cold Call">Cold Call</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="mb-3">
-              <label className="form-label" htmlFor="closedAt">
-                Closed At
-              </label>
-              <input
-                type="date"
-                id="closedAt"
-                name="closedAt"
-                className="form-control"
-                defaultValue={lead && lead.closedAt.split("T")[0]}
-                required
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Status & Sales Agent */}
-        <div className="row">
-          <div className="col">
-            <div className="mb-3">
-              <label className="form-label">Lead Status</label>
-              <select
-                id="status"
-                name="status"
-                className="form-select"
-                defaultValue={lead && lead.status}
-                required
-              >
-                <option value="" disabled>
-                  Lead Status
-                </option>
-                <option value="New">New</option>
-                <option value="Contacted">Contacted</option>
-                <option value="Qualified">Qualified</option>
-                <option value="Proposal Sent">Proposal Sent</option>
-                <option value="Closed">Closed</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="mb-3">
-              <label className="form-label">Assigned Sales Agent</label>
-              <select
-                id="salesAgent"
-                name="salesAgent"
-                className="form-select"
-                defaultValue={lead && lead.salesAgent && lead.salesAgent.id}
-                required
-              >
-                {salesAgent.map((agent) => (
-                  <option value={agent.id} id="salesAgent">
-                    {agent.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Time to Close & Priority */}
-        <div className="row">
-          <div className="col">
-            <div className="mb-3">
-              <label className="form-label">Time to Close (days)</label>
-              <input
-                type="number"
-                id="timeToClose"
-                name="timeToClose"
-                className="form-control"
-                defaultValue={lead && lead.timeToClose}
-                required
-              />
-            </div>
-          </div>
-
-          <div className="col">
-            <div className="mb-3">
-              <label className="form-label">Priority</label>
-              <select
-                id="priority"
-                name="priority"
-                className="form-select"
-                defaultValue={lead && lead.priority}
-                required
-              >
-                <option value="" disabled>
-                  Priority
-                </option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Tags */}
-        <div className="mb-3">
-          <label className="form-label" htmlFor="tags">
-            Tags
-          </label>
-
-          <div className="form-check">
+      <div className="container container-fluid">
+        <Form method="post" className="p-4  shadow rounded">
+          {/* Lead Name */}
+          <div className="mb-3">
+            <label className="form-label">Lead Name</label>
             <input
-              type="checkbox"
-              className="form-check-input"
-              value="High Value"
-              name="tags"
+              type="text"
+              id="name"
+              name="name"
+              className="form-control"
+              defaultValue={lead && lead.name}
               required
-              defaultChecked={lead && lead.tags.includes("High Value")}
             />
-            <label className="form-check-label">High Value</label>
           </div>
 
-          <div className="form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              value="Follow-up"
-              name="tags"
-              defaultChecked={lead && lead.tags.includes("Follow-up")}
-            />
-            <label className="form-check-label">Follow-up</label>
-          </div>
-        </div>
+          {/* Source & Closed At */}
+          <div className="row">
+            <div className="col-12 col-sm-6">
+              <div className="mb-3">
+                <label className="form-label">Lead Source</label>
+                <select
+                  id="source"
+                  name="source"
+                  className="form-select"
+                  defaultValue={lead && lead.source}
+                  required
+                >
+                  <option value="" disabled>
+                    Select Lead Source
+                  </option>
+                  <option value="Website">Website</option>
+                  <option value="Referral">Referral</option>
+                  <option value="Cold Call">Cold Call</option>
+                </select>
+              </div>
+            </div>
 
-        <button disabled={isLoading} type="submit" className="btn btn-primary">
-          {isLoading ? "Update..." : "Update Lead"}
-          {isLoading && <SubmitLoadingSpinner />}
-        </button>
-      </Form>
+            <div className="col-12 col-sm-6">
+              <div className="mb-3">
+                <label className="form-label" htmlFor="closedAt">
+                  Closed At
+                </label>
+                <input
+                  type="date"
+                  id="closedAt"
+                  name="closedAt"
+                  className="form-control"
+                  defaultValue={lead && lead.closedAt.split("T")[0]}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Status & Sales Agent */}
+          <div className="row">
+            <div className="col-12 col-sm-6">
+              <div className="mb-3">
+                <label className="form-label">Lead Status</label>
+                <select
+                  id="status"
+                  name="status"
+                  className="form-select"
+                  defaultValue={lead && lead.status}
+                  required
+                >
+                  <option value="" disabled>
+                    Lead Status
+                  </option>
+                  <option value="New">New</option>
+                  <option value="Contacted">Contacted</option>
+                  <option value="Qualified">Qualified</option>
+                  <option value="Proposal Sent">Proposal Sent</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="col-12 col-sm-6">
+              <div className="mb-3">
+                <label className="form-label">Assigned Sales Agent</label>
+                <select
+                  id="salesAgent"
+                  name="salesAgent"
+                  className="form-select"
+                  defaultValue={lead && lead.salesAgent && lead.salesAgent.id}
+                  required
+                >
+                  {salesAgent.map((agent) => (
+                    <option value={agent.id} id="salesAgent">
+                      {agent.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Time to Close & Priority */}
+          <div className="row">
+            <div className="col-12 col-sm-6">
+              <div className="mb-3">
+                <label className="form-label">Time to Close (days)</label>
+                <input
+                  type="number"
+                  id="timeToClose"
+                  name="timeToClose"
+                  className="form-control"
+                  defaultValue={lead && lead.timeToClose}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="col-12 col-sm-6">
+              <div className="mb-3">
+                <label className="form-label">Priority</label>
+                <select
+                  id="priority"
+                  name="priority"
+                  className="form-select"
+                  defaultValue={lead && lead.priority}
+                  required
+                >
+                  <option value="" disabled>
+                    Priority
+                  </option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div className="mb-3">
+            <label className="form-label" htmlFor="tags">
+              Tags
+            </label>
+
+            <div className="form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                value="High Value"
+                name="tags"
+                required
+                defaultChecked={lead && lead.tags.includes("High Value")}
+              />
+              <label className="form-check-label">High Value</label>
+            </div>
+
+            <div className="form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                value="Follow-up"
+                name="tags"
+                defaultChecked={lead && lead.tags.includes("Follow-up")}
+              />
+              <label className="form-check-label">Follow-up</label>
+            </div>
+          </div>
+
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="btn btn-primary btn-sm"
+          >
+            {isLoading ? "Update..." : "Update Lead"}
+            {isLoading && <SubmitLoadingSpinner />}
+          </button>
+        </Form>
+      </div>
     </>
   );
 };

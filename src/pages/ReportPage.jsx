@@ -6,14 +6,12 @@ import Loading from "../components/Loading";
 import { Suspense } from "react";
 
 const ReportPage = () => {
-
-
   const { leads } = useRouteLoaderData("allLeads");
 
   return (
     <>
       {/* HEADER */}
-      <div className="bg-white shadow-sm mb-4 rounded">
+      <div className="bg-white d-none d-sm-block shadow-sm mb-4 rounded">
         <div className="container-fluid p-3 d-flex justify-content-between align-items-center">
           <h3 className="mb-0 fw-bold">Report Overview</h3>
           <Link to="/" className="btn btn-secondary">
@@ -24,12 +22,18 @@ const ReportPage = () => {
 
       {/* MAIN CONTENT */}
       <div className="container-fluid pb-4">
+        <div className="my-3 d-sm-none">
+          <Link to="/" className="btn btn-outline-secondary btn-sm">
+            Go to dashboard
+          </Link>
+          <h3 className="mt-3">Lead report overview</h3>
+        </div>
+
         <div className="row g-4">
           {/* PIE CHART */}
           <div className="col-12 col-lg-4">
             <div className="card h-100 shadow-sm">
-              <div className="card-body d-flex justify-content-center align-items-center">
-                
+              <div className="card-body ">
                 <Suspense fallback={<Loading />}>
                   <Await resolve={leads}>
                     {(isLeadLoad) => <TotalLeadsClosed leads={isLeadLoad} />}

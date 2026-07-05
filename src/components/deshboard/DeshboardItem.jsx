@@ -9,17 +9,19 @@ const DashboardItem = ({ leads }) => {
   const contactedLeads = leads.filter((lead) => lead.status === "Contacted");
   const qualifiedLeads = leads.filter((lead) => lead.status === "Qualified");
 
+  
+
   return (
     <>
       <div className="container-fluid p-0">
         {/* Header */}
         <div className="bg-white shadow-sm border-bottom sticky-top rounded">
-          <div className="container-fluid px-4 py-2 py-md-3">
+          <div className="container-fluid px-2 px-md-4 py-3">
             <div className="d-flex justify-content-between align-items-center">
               <h1 className="h3 mb-0 fw-bold text-dark fs-4">Dashboard</h1>
               <Link
                 to="leads/addLeads"
-                className="btn btn-primary d-none d-md-inline-flex align-items-center"
+                className="btn btn-primary btn-sm d-none d-md-inline-flex align-items-center"
               >
                 <i className="bi bi-plus-circle me-2"></i>
                 Add New Lead
@@ -35,35 +37,35 @@ const DashboardItem = ({ leads }) => {
               <h5 className="card-title mb-3 fw-semibold">Quick Filters</h5>
               <div className="d-flex flex-wrap gap-2">
                 <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-primary btn-sm"
                   onClick={() => setSearchParams("status=New")}
                 >
                   <i className="bi bi-star me-1"></i>
                   New
                 </button>
                 <button
-                  className="btn btn-outline-info"
+                  className="btn btn-outline-info btn-sm"
                   onClick={() => setSearchParams("status=Contacted")}
                 >
                   <i className="bi bi-telephone me-1"></i>
                   Contacted
                 </button>
                 <button
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-success btn-sm"
                   onClick={() => setSearchParams("status=Qualified")}
                 >
                   <i className="bi bi-check-circle me-1"></i>
                   Qualified
                 </button>
                 <button
-                  className="btn btn-outline-warning"
+                  className="btn btn-outline-warning btn-sm"
                   onClick={() => setSearchParams("status=Proposal Sent")}
                 >
                   <i className="bi bi-file-earmark-text me-1"></i>
                   Proposal Sent
                 </button>
                 <button
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline-secondary btn-sm"
                   onClick={() => setSearchParams("status=Closed")}
                 >
                   <i className="bi bi-archive me-1"></i>
@@ -83,7 +85,7 @@ const DashboardItem = ({ leads }) => {
                       <p className="text-muted mb-1 small">New Leads</p>
                       <h3 className="mb-0 fw-bold">{newLeads.length}</h3>
                     </div>
-                    <div className="bg-primary bg-opacity-10 p-3 rounded">
+                    <div className="bg-primary  p-3 rounded">
                       <i className="bi bi-star-fill text-primary fs-4"></i>
                     </div>
                   </div>
@@ -99,7 +101,7 @@ const DashboardItem = ({ leads }) => {
                       <p className="text-muted mb-1 small">Contacted</p>
                       <h3 className="mb-0 fw-bold">{contactedLeads.length}</h3>
                     </div>
-                    <div className="bg-info bg-opacity-10 p-3 rounded">
+                    <div className="bg-info  p-3 rounded">
                       <i className="bi bi-telephone-fill text-info fs-4"></i>
                     </div>
                   </div>
@@ -115,7 +117,7 @@ const DashboardItem = ({ leads }) => {
                       <p className="text-muted mb-1 small">Qualified</p>
                       <h3 className="mb-0 fw-bold">{qualifiedLeads.length}</h3>
                     </div>
-                    <div className="bg-success bg-opacity-10 p-3 rounded">
+                    <div className="bg-success  p-3 rounded">
                       <i className="bi bi-check-circle-fill text-success fs-4"></i>
                     </div>
                   </div>
@@ -153,9 +155,11 @@ const DashboardItem = ({ leads }) => {
                                   {lead.name}
                                 </div>
                                 <div className="small text-muted mt-1">
-                                  Status: 
-                                  <span className="fw-medium text-secondary px-2">
-                                     {lead.status}
+                                  Status:
+                                  <span
+                                    className={`fw-medium ${lead.status === "New" ? "text-primary" : lead.status === "Qualified" ? "text-success" : lead.status === "Contacted" ? "text-info" : "text-dark"} px-2`}
+                                  >
+                                    {lead.status}
                                   </span>
                                 </div>
                               </div>

@@ -23,21 +23,18 @@ const LeadForm = () => {
           onClose={() => setError(null)}
         />
       )}
-      <div className="bg-white shadow-sm border-bottom sticky-top rounded mb-4 container-fluid px-4 py-3 ">
+      <div className="bg-white shadow-sm border-bottom sticky-top rounded mb-4 container-fluid px-2 px-md-4 py-3 ">
         <div className="d-flex justify-content-between align-items-center">
-          <h3 className="h4 mb-0 fw-bold text-dark">Lead Form</h3>
-          <Link
-            to="/"
-            className="btn btn-primary d-none d-md-inline-flex align-items-center"
-          >
-            <i className="bi bi-plus-circle me-2"></i>
-            Go to Dashboard
+          <h3 className="mb-0 fw-bold text-dark fs-5">Lead Form</h3>
+          <Link to="/" className="btn btn-primary btn-sm  align-items-center">
+           
+            Dashboard
           </Link>
         </div>
       </div>
 
-      <div className="container container-fluid " style={{maxWidth: "900px"}}>
-        <Form method="post" className="p-3 shadow rounded bg-white" >
+      <div className="container container-fluid " style={{ maxWidth: "900px" }}>
+        <Form method="post" className="p-3 shadow rounded bg-white">
           {/* Lead Name */}
           <div className="mb-3">
             <label className="form-label">Lead Name</label>
@@ -52,7 +49,7 @@ const LeadForm = () => {
 
           {/* Source & Closed At */}
           <div className="row">
-            <div className="col">
+            <div className="col-sm">
               <div className="mb-3">
                 <label className="form-label">Lead Source</label>
                 <select
@@ -89,7 +86,7 @@ const LeadForm = () => {
 
           {/* Status & Sales Agent */}
           <div className="row">
-            <div className="col">
+            <div className="col-sm">
               <div className="mb-3">
                 <label className="form-label">Lead Status</label>
                 <select
@@ -134,7 +131,7 @@ const LeadForm = () => {
 
           {/* Time to Close & Priority */}
           <div className="row">
-            <div className="col">
+            <div className="col-sm">
               <div className="mb-3">
                 <label className="form-label">Time to Close (days)</label>
                 <input

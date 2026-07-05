@@ -94,11 +94,11 @@ const AgentForm = () => {
         <div className="bg-white shadow-sm border-bottom sticky-top rounded">
           <div className="container-fluid  py-3">
             <div className="d-flex justify-content-between align-items-center">
-              <h1 className="h3 mb-0 fw-bold">Add Agent</h1>
+              <h4 className=" mb-0 fs-5 fw-bold">Add Agent</h4>
               <div className="d-flex gap-2">
-                <Link to="/" className="btn btn-outline-secondary">
-                  <i className="bi bi-house-door me-2"></i>
-                  Go to Dashboard
+                <Link to="/" className="btn btn-outline-secondary d-flex btn-sm">
+                
+                  <span className="d-none d-md-flex me-2">Go to </span>Dashboard
                 </Link>
               </div>
             </div>

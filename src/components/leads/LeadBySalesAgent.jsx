@@ -67,28 +67,29 @@ const LeadsBySalesAgent = ({ allLeads }) => {
         <div className="bg-white shadow-sm border-bottom sticky-top mb-3">
           <div className="container-fluid  py-3">
             <div className="d-flex justify-content-between align-items-center">
-              <h1 className="h3 mb-0 fw-bold">Leads by Sales Agent</h1>
-              <Link to="/" className="btn btn-outline-secondary">
-                <i className="bi bi-house-door me-2"></i>
-                Back to dashboard
+              <h1 className="h5 mb-0 fw-bold">Leads by Agents</h1>
+              <Link to="/" className="btn btn-outline-secondary btn-sm d-sm-flex">
+                <span className="d-none d-sm-flex"> Back to</span> Dashboard
               </Link>
             </div>
           </div>
         </div>
 
         <div className=" my-2 p-3">
-          {/* Sales Agent Filter */}
-          <div className="card mb-4 shadow-sm">
+          
+
+          {/* Filters Section */}
+          <div className="card shadow-sm border-0 mb-2">
+            <div className="card-header bg-white py-3">
+              <h5 className="mb-0 fw-bold">
+                <i className="bi bi-funnel me-2"></i>Filters
+              </h5>
+            </div>
             <div className="card-body">
-              <div className="row align-items-center">
-                <div className="col-12 col-md-3">
-                  <label className="form-label fw-semibold mb-md-0">
-                    Filter via Sales Agent:
-                  </label>
-                </div>
-                <div className="col-12 col-md-9">
+              <div className="row g-4">
+                <div className="col-12 col-sm-6 col-md-4">
+                  <label className="form-label fw-semibold">Sales Agent </label>
                   <select
-                    id="agentId"
                     className="form-select"
                     onChange={(e) => onUpdateParams("agentId", e.target.value)}
                   >
@@ -101,20 +102,7 @@ const LeadsBySalesAgent = ({ allLeads }) => {
                       ))}
                   </select>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Filters Section */}
-          <div className="card shadow-sm border-0 mb-2">
-            <div className="card-header bg-white py-3">
-              <h5 className="mb-0 fw-bold">
-                <i className="bi bi-funnel me-2"></i>Filters
-              </h5>
-            </div>
-            <div className="card-body">
-              <div className="row g-4">
-                <div className="col-12 col-md-4">
+                <div className="col-12 col-sm-6 col-md-4">
                   <label className="form-label fw-semibold">Status</label>
                   <select
                     className="form-select"
@@ -128,7 +116,7 @@ const LeadsBySalesAgent = ({ allLeads }) => {
                     ))}
                   </select>
                 </div>
-                <div className="col-12 col-md-4">
+                <div className="col-12 col-sm-6 col-md-4">
                   <label className="form-label fw-semibold">Priority</label>
                   <select
                     className="form-select"
@@ -142,7 +130,7 @@ const LeadsBySalesAgent = ({ allLeads }) => {
                     ))}
                   </select>
                 </div>
-                <div className="col-12 col-md-4">
+                <div className="col-12 col-sm-6 col-md-4">
                   <label className="form-label fw-semibold d-block">
                     Time to Close
                   </label>

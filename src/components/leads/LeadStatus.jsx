@@ -15,13 +15,13 @@ const LeadStatus = ({ allLeads }) => {
       ? filterNewLeads
       : filterNewLeads.filter(
           (lead) =>
-            lead.salesAgent && lead.salesAgent.id === searchParams.get("agent")
+            lead.salesAgent && lead.salesAgent.id === searchParams.get("agent"),
         );
   const filterByPriority =
     searchParams.get("priority") === null
       ? filterByAgents
       : filterByAgents.filter(
-          (lead) => lead.priority === searchParams.get("priority")
+          (lead) => lead.priority === searchParams.get("priority"),
         );
 
   const onUpdateParams = (key, value) => {
@@ -63,10 +63,12 @@ const LeadStatus = ({ allLeads }) => {
         <div className="bg-white shadow-sm border-bottom sticky-top">
           <div className="container-fluid  py-3">
             <div className="d-flex justify-content-between align-items-center">
-              <h1 className="h3 mb-0 fw-bold">Leads by Status</h1>
-              <Link to="/" className="btn btn-outline-secondary">
-                <i className="bi bi-house-door me-2"></i>
-                Go to Dashboard
+              <h1 className="h5 mb-0 fw-bold">Leads by Status</h1>
+              <Link
+                to="/"
+                className="btn btn-outline-secondary btn-sm d-md-flex"
+              >
+                <span className="d-none d-md-flex me-2"> Go to </span>Dashboard
               </Link>
             </div>
           </div>
@@ -124,7 +126,7 @@ const LeadStatus = ({ allLeads }) => {
                 </div>
 
                 {/* Priority Filter */}
-                <div className="col-6 col-md-2">
+                <div className="col-sm-6 col-md-2">
                   <label
                     htmlFor="priority"
                     className="form-label small text-muted mb-1"
@@ -147,7 +149,7 @@ const LeadStatus = ({ allLeads }) => {
                 </div>
 
                 {/* Time to Close Filter */}
-                <div className="col-6 col-md-3">
+                <div className="col-12 col-sm-6 col-md-3">
                   <label className="form-label small text-muted mb-1">
                     Time to Close
                   </label>

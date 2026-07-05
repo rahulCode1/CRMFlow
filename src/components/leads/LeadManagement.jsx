@@ -6,13 +6,19 @@ const LeadManagement = ({ lead, comments }) => {
     <>
       <div className="min-vh-100 bg-light">
         {/* Header Section */}
-        <div className="bg-white shadow-sm border-bottom rounded">
-          <div className="container py-3 d-flex justify-content-between px-4">
-            <h2>Lead details </h2>
-            <Link to="/" className="btn btn-outline-primary">
-              <i className="bi bi-arrow-left me-2"></i>Back to Dashboard
+        <div className="w-100 bg-white d-none d-sm-block">
+          <div className="p-2 px-md-4 d-flex align-items-center justify-content-between">
+            <h3>Lead details</h3>
+            <Link  to="/" className="btn btn-outline-secondary btn-sm">
+              Go to Dashboard
             </Link>
           </div>
+        </div>
+
+        <div className="mt-4 ms-3 d-sm-none">
+          <Link to="/" className="btn btn-outline-secondary btn-sm">
+            Go to Dashboard
+          </Link>
         </div>
 
         <div className="container my-4">
@@ -23,6 +29,7 @@ const LeadManagement = ({ lead, comments }) => {
                 <div className="card-body p-4">
                   <div className="row g-3">
                     <div className="col-12 col-md-6">
+                      <h4 className="mb-3 d-sm-none">Lead details</h4>
                       <p className="text-muted small mb-0">
                         <span className="me-2">Lead Name:</span>
                         <span className="fw-bold text-dark">{lead.name}</span>
@@ -68,7 +75,7 @@ const LeadManagement = ({ lead, comments }) => {
                     </div>
                   </div>
                   <hr className="my-4" />
-                  <Link to={`edit`} className="btn btn-secondary">
+                  <Link to={`edit`} className="btn btn-secondary btn-sm">
                     <i className="bi bi-pencil me-2"></i>Edit Lead Details
                   </Link>
                 </div>
@@ -87,6 +94,7 @@ const LeadManagement = ({ lead, comments }) => {
                   </span>
                 </div>
                 <div className="card-body">
+                  {console.log(comments)}
                   {comments && comments.length !== 0 ? (
                     <div className="comments-list">
                       {comments.map((comment, index) => (
@@ -95,18 +103,32 @@ const LeadManagement = ({ lead, comments }) => {
                           className="comment-item p-3 mb-3 bg-light rounded border"
                         >
                           <div className="d-flex align-items-start">
-                            <div
-                              className="avatar-circle bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                                minWidth: "40px",
-                              }}
-                            >
-                              {comment && comment.author
-                                ? comment.author.name.charAt(0).toUpperCase()
-                                : "U"}
-                            </div>
+                            {comment?.author?.profileImg ? (
+                              <img
+                                src={comment.author.profileImg}
+                                alt={comment.author.name}
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  objectFit: "cover",
+                                  borderRadius: "50%",
+                                }}
+                                className="me-3"
+                              />
+                            ) : (
+                              <div
+                                className="avatar-circle bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  minWidth: "40px",
+                                }}
+                              >
+                                {comment && comment.author
+                                  ? comment.author.name.charAt(0).toUpperCase()
+                                  : "U"}
+                              </div>
+                            )}
                             <div className="flex-grow-1">
                               <h6 className="fw-bold mb-1">
                                 {comment.author

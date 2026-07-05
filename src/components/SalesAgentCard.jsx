@@ -7,12 +7,12 @@ const SalesAgentsCard = ({ salesAgent, isLoading }) => {
       <div className="container-fluid p-0">
         {/* Header */}
         <div className="bg-white shadow-sm border-bottom sticky-top rounded">
-          <div className="container-fluid px-4 py-3">
+          <div className="container-fluid px-2 px-md-4 py-3">
             <div className="d-flex justify-content-between align-items-center">
-              <h1 className="h3 mb-0 fw-bold"> Sales Agents</h1>
+              <h5 className=" mb-0 fw-bold"> Sales Agents</h5>
               <div className="d-flex gap-2">
-                <Link to="add" className="btn btn-primary">
-                  <i className="bi bi-plus-circle me-2"></i>
+                <Link to="add" className="btn btn-primary btn-sm">
+              
                   Add Agent
                 </Link>
               </div>
@@ -23,7 +23,7 @@ const SalesAgentsCard = ({ salesAgent, isLoading }) => {
         
 
         {/* Main Content */}
-        <div className="container-fluid  py-4 ">
+        <div className="container-fluid  py-4 " style={{maxWidth: "1000px", margin: "auto"}}>
           <div className="row justify-content-center ">
             <div className="col-lg-10 ">
               <div className="card shadow-sm ">

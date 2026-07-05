@@ -70,7 +70,7 @@ const LeadsListItem = ({ leads }) => {
             <div className="d-flex justify-content-between align-items-center">
               <h1 className="h3 mb-0 fw-bold text-dark">All Leads</h1>
 
-              <Link to="addLeads" className="btn btn-primary btn-sm">
+              <Link to="addLeads" className="btn btn-primary btn-sm d-none d-md-flex">
                 <i className="bi bi-plus-circle me-1"></i>
                 Add New Lead
               </Link>
@@ -84,7 +84,7 @@ const LeadsListItem = ({ leads }) => {
             <div className="card-body ">
               <div className="row g-2 align-items-end">
                 {/* Status Filter */}
-                <div className="col-6 col-md-3">
+                <div className="col-12 col-sm-6 col-md-3">
                   <label
                     htmlFor="status"
                     className="form-label small text-muted mb-1"
@@ -109,7 +109,7 @@ const LeadsListItem = ({ leads }) => {
                 </div>
 
                 {/* Sales Agent Filter */}
-                <div className="col-6 col-md-3">
+                <div className="col-12 col-sm-6 col-md-3">
                   <label
                     htmlFor="agentId"
                     className="form-label small text-muted mb-1"
@@ -134,7 +134,7 @@ const LeadsListItem = ({ leads }) => {
                 </div>
 
                 {/* Priority Filter */}
-                <div className="col-6 col-md-2">
+                <div className="col-12 col-sm-6 col-md-3">
                   <label
                     htmlFor="priority"
                     className="form-label small text-muted mb-1"
@@ -159,7 +159,7 @@ const LeadsListItem = ({ leads }) => {
                 </div>
 
                 {/* Time to Close Filter */}
-                <div className="col-6 col-md-3">
+                <div className="col-12 col-sm-6 col-md-3">
                   <label
                     htmlFor="timeToClose"
                     className="form-label small text-muted mb-1"
@@ -179,8 +179,6 @@ const LeadsListItem = ({ leads }) => {
                     <option value="tackingLonger">Taking Longer</option>
                   </select>
                 </div>
-
-        
               </div>
             </div>
           </div>
@@ -213,29 +211,22 @@ const LeadsListItem = ({ leads }) => {
             </div>
           )}
         </div>
+
+        {/* Mobile FAB Button */}
+        <Link
+          to="addLeads"
+          className="btn btn-primary rounded-circle shadow-lg position-fixed d-md-none d-flex align-items-center justify-content-center"
+          style={{
+            width: "45px",
+            height: "45px",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 1000,
+          }}
+        >
+          <i className="bi bi-plus-lg fs-4">+</i>
+        </Link>
       </div>
-
-      <style jsx>{`
-        .lead-card {
-          transition: all 0.2s ease;
-          cursor: pointer;
-        }
-
-        .lead-card:hover {
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-          transform: translateY(-2px);
-        }
-
-        .lead-card:active {
-          transform: translateY(0);
-        }
-
-        @media (max-width: 767.98px) {
-          .form-select-sm {
-            font-size: 0.875rem;
-          }
-        }
-      `}</style>
     </>
   );
 };
