@@ -96,8 +96,10 @@ const AgentForm = () => {
             <div className="d-flex justify-content-between align-items-center">
               <h4 className=" mb-0 fs-5 fw-bold">Add Agent</h4>
               <div className="d-flex gap-2">
-                <Link to="/" className="btn btn-outline-secondary d-flex btn-sm">
-                
+                <Link
+                  to="/"
+                  className="btn btn-outline-secondary d-flex btn-sm"
+                >
                   <span className="d-none d-md-flex me-2">Go to </span>Dashboard
                 </Link>
               </div>
@@ -183,7 +185,10 @@ const AgentForm = () => {
                         className="btn btn-primary w-100"
                       >
                         <i className="bi bi-check-circle me-2"></i>
-                        {isSubmitting && <SubmitLoadingSpinner />}
+
+                        {isSubmitting && (
+                          <span className="spinner-border spinner-border-sm me-2" />
+                        )}
                         {isSubmitting ? "Adding agent..." : "Add agent"}
                       </button>
                     </div>
